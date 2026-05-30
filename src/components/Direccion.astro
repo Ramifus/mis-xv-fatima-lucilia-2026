@@ -1,0 +1,200 @@
+---
+// Direccion.astro
+---
+
+<section class="py-8 px-4 relative overflow-hidden">
+  <!-- Flores laterales -->
+  <div class="absolute left-0 top-1/2 -translate-y-1/2 w-12 md:w-16 lg:w-20 pointer-events-none" id="flor-dir-izq">
+    <img src="/imagenes/FlorLateral.webp" alt="" class="w-full h-auto object-contain opacity-80" />
+  </div>
+  <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 md:w-16 lg:w-20 pointer-events-none" id="flor-dir-der">
+    <img src="/imagenes/FlorLateral.webp" alt="" class="w-full h-auto object-contain scale-x-[-1] opacity-80" />
+  </div>
+
+  <div class="max-w-xl mx-auto text-center relative z-10">
+    <!-- TÍTULO DIRECCIÓN -->
+    <div class="mb-2" id="titulo-direccion">
+      <h2
+        class="font-charm text-2xl md:text-3xl text-[#a27735] font-bold tracking-wide"
+      >
+        RECEPCIÓN SOCIAL
+      </h2>
+    </div>
+    <!-- 🏛️ ICONO DIRECCIÓN CON MARIPOSAS -->
+    <div
+      class="flex justify-center items-center gap-4 md:gap-6 mb-4"
+      id="icono-direccion"
+    >
+      <!-- 🦋 MARIPOSA IZQUIERDA -->
+      <div class="mariposa-flotante flex items-center" id="mariposa-dir-izq">
+        <img
+          src="/imagenes/mariposadorada.png"
+          alt="Mariposa"
+          class="w-20 h-20 object-contain"
+          style="animation: aletear 0.9s ease-in-out infinite;"
+        />
+      </div>
+
+      <!-- ICONO CENTRAL -->
+      <img
+        src="/imagenes/direccion.png"
+        alt="Icono de dirección"
+        class="w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain icono-dorado"
+      />
+
+      <!-- 🦋 MARIPOSA DERECHA -->
+      <div class="mariposa-flotante flex items-center" id="mariposa-dir-der">
+        <img
+          src="/imagenes/mariposadorada.png"
+          alt="Mariposa"
+          class="w-20 h-20 object-contain"
+          style="animation: aletear-izq 0.9s ease-in-out infinite 0.15s;"
+        />
+      </div>
+    </div>
+
+    <!-- INFORMACIÓN DE UBICACIÓN -->
+    <div class="mb-2" id="info-direccion">
+      <!-- Nombre del lugar -->
+      <h3 class="font-charm text-2xl md:text-3xl text-[#9A7B2F] font-bold mb-2">
+        Salón de Eventos <br />"Curupaú"
+      </h3>
+
+      <!-- Dirección -->
+      <p
+        class="font-charm text-lg md:text-xl text-[#9A7B2F] leading-relaxed mb-3"
+      >
+        Calle Fraternidades N.º 3, avenida Roca y Coronado, Santa Cruz de la Sierra
+      </p>
+
+      <!-- Hora -->
+      <p class="font-charm text-xl md:text-2xl text-[#9A7B2F] font-bold">
+        Hora: 16:00
+      </p>
+    </div>
+
+    <!-- BOTÓN VER UBICACIÓN -->
+    <div class="flex justify-center" id="boton-ubicacion">
+      <a
+        href="https://goo.su/uTgoi"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="boton-ubicacion inline-flex items-center gap-2 px-6 py-2.5 rounded-full font-charm text-base md:text-lg font-bold text-white tracking-wide transition-all duration-300"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        Ver Ubicación
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", () => {
+      // Estado inicial
+      gsap.set("#icono-direccion", { opacity: 0, scale: 0.8 });
+      gsap.set("#titulo-direccion", { opacity: 0, scale: 0.9 });
+      gsap.set("#info-direccion", { opacity: 0, scale: 0.9 });
+      gsap.set("#boton-ubicacion", { opacity: 0, scale: 0.9 });
+      gsap.set("#mariposa-dir-izq", { opacity: 0, x: -30 });
+      gsap.set("#mariposa-dir-der", { opacity: 0, x: 30 });
+      gsap.set("#flor-dir-izq", { opacity: 0, x: -50 });
+      gsap.set("#flor-dir-der", { opacity: 0, x: 50 });
+
+      ScrollTrigger.create({
+        trigger: "#icono-direccion",
+        start: "top 85%",
+        end: "top 20%",
+        onEnter: () => {
+          const tl = gsap.timeline();
+
+          tl.to(
+            "#icono-direccion, #mariposa-dir-izq, #mariposa-dir-der, #titulo-direccion, #info-direccion, #boton-ubicacion",
+            { opacity: 1, duration: 1, ease: "power2.out" },
+          )
+            .to("#icono-direccion", { scale: 1, duration: 1, ease: "back.out(1.5)" }, "<")
+            .to("#mariposa-dir-izq", { x: 0, duration: 1, ease: "power2.out" }, "<")
+            .to("#mariposa-dir-der", { x: 0, duration: 1, ease: "power2.out" }, "<")
+            .to(
+              "#titulo-direccion, #info-direccion, #boton-ubicacion",
+              { scale: 1, duration: 1, ease: "back.out(1.2)" },
+              "<",
+            )
+            .to("#flor-dir-izq, #flor-dir-der", { opacity: 0.8, x: 0, duration: 1, ease: "power2.out" }, "<");
+
+          gsap.to("#mariposa-dir-izq", {
+            y: -15, x: 5, rotation: 5,
+            duration: 3, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 0.5,
+          });
+          gsap.to("#mariposa-dir-der", {
+            y: -15, x: -5, rotation: -5,
+            duration: 3.2, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 0.7,
+          });
+        },
+        onLeaveBack: () => {
+          const tl = gsap.timeline();
+          tl.to(
+            "#icono-direccion, #mariposa-dir-izq, #mariposa-dir-der, #titulo-direccion, #info-direccion, #boton-ubicacion",
+            { opacity: 0, duration: 0.5, ease: "power2.in" },
+          )
+            .to("#icono-direccion", { scale: 0.8, duration: 0.5, ease: "power2.in" }, "<")
+            .to("#mariposa-dir-izq", { x: -30, duration: 0.5, ease: "power2.in" }, "<")
+            .to("#mariposa-dir-der", { x: 30, duration: 0.5, ease: "power2.in" }, "<")
+            .to("#flor-dir-izq", { opacity: 0, x: -50, duration: 0.5, ease: "power2.in" }, "<")
+            .to("#flor-dir-der", { opacity: 0, x: 50, duration: 0.5, ease: "power2.in" }, "<")
+            .to(
+              "#titulo-direccion, #info-direccion, #boton-ubicacion",
+              { scale: 0.9, duration: 0.5, ease: "power2.in" },
+              "<",
+            );
+        },
+      });
+
+      console.log("📍🦋 Sección de Dirección con mariposas inicializada");
+    });
+  }
+</script>
+
+<style>
+  .mariposa-flotante {
+    will-change: transform;
+    transition: all 0.3s ease;
+  }
+  .mariposa-flotante:hover {
+    transform: scale(1.1) !important;
+    filter: brightness(1.2);
+  }
+  .boton-ubicacion {
+    background: linear-gradient(135deg, #a27735 0%, #c9a94b 60%, #a27735 100%);
+    box-shadow: 0 4px 16px rgba(162, 119, 53, 0.35);
+  }
+  .boton-ubicacion:hover {
+    background: linear-gradient(135deg, #8a6428 0%, #b8943e 60%, #8a6428 100%);
+    box-shadow: 0 6px 20px rgba(162, 119, 53, 0.5);
+    transform: translateY(-2px) scale(1.03);
+  }
+  .boton-ubicacion:active {
+    transform: translateY(0) scale(0.98);
+  }
+  .icono-dorado {
+    filter: brightness(0) saturate(100%) invert(56%) sepia(12%) saturate(1486%)
+      hue-rotate(359deg) brightness(92%) contrast(87%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+  }
+  @keyframes aletear {
+    0%, 100% { transform: scaleX(1);   }
+    50%       { transform: scaleX(0.6); }
+  }
+  @keyframes aletear-izq {
+    0%, 100% { transform: scaleX(-1);   }
+    50%       { transform: scaleX(-0.6); }
+  }
+</style>
