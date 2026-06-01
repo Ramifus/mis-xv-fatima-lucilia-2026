@@ -79,45 +79,71 @@
       </div>
 
       <!-- CARD CON QR Y DATOS BANCARIOS -->
-      <div
-        class="bg-white/95 backdrop-blur-sm rounded-3xl border-2 border-[#C9A961]/30 py-8 md:py-10 px-6 md:px-10 lg:px-12 shadow-sm max-w-3xl mx-auto"
-        id="card-qr"
-      >
-        <!-- CONTENEDOR GRID: QR + DATOS -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <!-- COLUMNA IZQUIERDA: CÓDIGO QR -->
-          <div
-            class="flex flex-col items-center justify-center"
-            id="qr-container"
-          >
-            <!-- QR MAS GRANDE - Aumentado el tamaño especialmente para móvil -->
-            <div
-              class="w-72 h-72 md:w-80 md:h-80 bg-white rounded-2xl border-2 border-[#C9A961]/20 flex items-center justify-center shadow-sm mb-4"
-            >
-              <!-- Aquíva tu imagen QR -->
-              <img
-                src="/imagenes/qr.png"
-                alt="C贸digo QR"
-                class="w-full h-full object-contain p-4"
-              />
-            </div>
-            <p class="font-charm text-lg md:text-xl text-[#C9A961] font-bold">
-              Escanea el código
-            </p>
-            <p class="font-charm text-base md:text-lg text-[#9A7B2F] mt-2 text-center">
-              Nombre: Vilma Mariely Ticona Burgos
-            </p>
-          </div>
+      <div class="relative max-w-3xl mx-auto">
+
+        <!-- 🌸 FLOR LATERAL IZQUIERDA -->
+        <div
+          class="absolute left-0 top-1/2 -translate-y-1/2 w-12 md:w-14 lg:w-16 pointer-events-none z-0"
+          id="flor-card-izq"
+        >
+          <img
+            src="/imagenes/FlorLateral.webp"
+            alt=""
+            class="w-full h-auto object-contain"
+          />
         </div>
 
-        <!-- DECORACI脫N INFERIOR -->
-        <div class="flex justify-center mt-8" id="decoracion-qr">
-          <div class="flex gap-2">
-            <div class="w-2 h-2 rounded-full bg-[#C9A961] opacity-60"></div>
-            <div class="w-2 h-2 rounded-full bg-[#C9A961] opacity-80"></div>
-            <div class="w-2 h-2 rounded-full bg-[#C9A961]"></div>
-            <div class="w-2 h-2 rounded-full bg-[#C9A961] opacity-80"></div>
-            <div class="w-2 h-2 rounded-full bg-[#C9A961] opacity-60"></div>
+        <!-- 🌸 FLOR LATERAL DERECHA -->
+        <div
+          class="absolute right-0 top-1/2 -translate-y-1/2 w-12 md:w-14 lg:w-16 pointer-events-none z-0"
+          id="flor-card-der"
+        >
+          <img
+            src="/imagenes/FlorLateral.webp"
+            alt=""
+            class="w-full h-auto object-contain scale-x-[-1]"
+          />
+        </div>
+
+        <div
+          class="bg-white/95 backdrop-blur-sm rounded-3xl border-2 border-[#C9A961]/30 py-8 md:py-10 px-6 md:px-10 lg:px-12 shadow-sm relative z-10"
+          id="card-qr"
+        >
+          <!-- CONTENEDOR GRID: QR + DATOS -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <!-- COLUMNA IZQUIERDA: CÓDIGO QR -->
+            <div
+              class="flex flex-col items-center justify-center"
+              id="qr-container"
+            >
+              <!-- QR MAS GRANDE - Aumentado el tamaño especialmente para móvil -->
+              <div
+                class="w-72 h-72 md:w-80 md:h-80 bg-white rounded-2xl border-2 border-[#C9A961]/20 flex items-center justify-center shadow-sm mb-4"
+              >
+                <img
+                  src="/imagenes/qr.png"
+                  alt="Código QR"
+                  class="w-full h-full object-contain p-4"
+                />
+              </div>
+              <p class="font-charm text-lg md:text-xl text-[#C9A961] font-bold">
+                Escanea el código
+              </p>
+              <p class="font-charm text-base md:text-lg text-[#9A7B2F] mt-2 text-center">
+                Nombre cuenta: Maria Silvana Revollo Perez
+              </p>
+            </div>
+          </div>
+
+          <!-- DECORACIÓN INFERIOR -->
+          <div class="flex justify-center mt-8" id="decoracion-qr">
+            <div class="flex gap-2">
+              <div class="w-2 h-2 rounded-full bg-[#C9A961] opacity-60"></div>
+              <div class="w-2 h-2 rounded-full bg-[#C9A961] opacity-80"></div>
+              <div class="w-2 h-2 rounded-full bg-[#C9A961]"></div>
+              <div class="w-2 h-2 rounded-full bg-[#C9A961] opacity-80"></div>
+              <div class="w-2 h-2 rounded-full bg-[#C9A961] opacity-60"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -138,11 +164,13 @@
       // 馃幆 ESTADO INICIAL - Todo con scale 0.8 para animaci贸n simult谩nea
       gsap.set("#hoja-qr-izq", { opacity: 0, x: -50 });
       gsap.set("#hoja-qr-der", { opacity: 0, x: 50 });
+      gsap.set("#flor-card-izq", { opacity: 0, x: -50 });
+      gsap.set("#flor-card-der", { opacity: 0, x: 50 });
       gsap.set("#separador-qr-top", { opacity: 0, scale: 0.8 });
       gsap.set("#titulo-qr", { opacity: 0, scale: 0.8 });
       gsap.set("#mensaje-qr", { opacity: 0, scale: 0.8 });
       gsap.set("#card-qr", { opacity: 0, scale: 0.8 });
-      gsap.set("#qr-container", { opacity: 0, scale: 0.8 }); // Centrado, sin movimiento lateral
+      gsap.set("#qr-container", { opacity: 0, scale: 0.8 });
       gsap.set("#decoracion-qr", { opacity: 0, scale: 0.8 });
 
       // 鉁?ANIMACI脫N CON SCROLLTRIGGER - TODO SIMULT脕NEO
@@ -162,12 +190,30 @@
             },
           );
 
-          // Hojas laterales tambi茅n simult谩neas
+          // Hojas laterales también simultáneas
           gsap.to("#hoja-qr-izq, #hoja-qr-der", {
             opacity: 0.6,
             x: 0,
             duration: 1.2,
             ease: "power3.out",
+          });
+
+          // Flores del card
+          gsap.to("#flor-card-izq, #flor-card-der", {
+            opacity: 1,
+            x: 0,
+            duration: 1.2,
+            ease: "power3.out",
+          });
+
+          // Animación flotante flores del card
+          gsap.to("#flor-card-izq", {
+            y: -8, rotation: -3,
+            duration: 3, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 1.2,
+          });
+          gsap.to("#flor-card-der", {
+            y: -8, rotation: 3,
+            duration: 3, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 1.5,
           });
 
           // 馃挮 ANIMACIONES CONTINUAS (despu茅s de la entrada)
@@ -219,6 +265,8 @@
           // Restaurar estado inicial
           gsap.set("#hoja-qr-izq", { opacity: 0, x: -50 });
           gsap.set("#hoja-qr-der", { opacity: 0, x: 50 });
+          gsap.set("#flor-card-izq", { opacity: 0, x: -50 });
+          gsap.set("#flor-card-der", { opacity: 0, x: 50 });
           gsap.set("#separador-qr-top", { opacity: 0, scale: 0.8 });
           gsap.set("#titulo-qr", { opacity: 0, scale: 0.8 });
           gsap.set("#mensaje-qr", { opacity: 0, scale: 0.8 });

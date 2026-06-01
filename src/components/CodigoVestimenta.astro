@@ -7,9 +7,9 @@
     <!-- 🌸 SEPARADOR SUPERIOR -->
     <div class="flex justify-center mb-8" id="separador-superior">
       <img
-        src="/imagenes/Separador.png"
+        src="/imagenes/FlorSeparador.webp"
         alt="Separador decorativo"
-        class="w-32 md:w-48 lg:w-56 h-auto object-contain"
+        class="w-40 md:w-56 lg:w-64 h-auto object-contain"
       />
     </div>
 
@@ -41,13 +41,50 @@
     </div>
 
     <!-- NOTA IMPORTANTE -->
-    <div class="mb-2" id="nota-vestimenta">
-      <p class="font-charm text-xl md:text-lg text-[#9A7B2F] leading-relaxed">
-        Color dorado reservado para la quinceañera
-      </p>
+    <div class="mb-2 flex justify-center" id="nota-vestimenta">
+      <div class="nota-elegante relative inline-block px-8 py-5 text-center w-full max-w-xs">
+        <!-- Esquinas decorativas -->
+        <span class="corner corner-tl">◆</span>
+        <span class="corner corner-tr">◆</span>
+        <span class="corner corner-bl">◆</span>
+        <span class="corner corner-br">◆</span>
+
+        <p class="font-charm text-lg md:text-xl text-[#9A7B2F] leading-relaxed">
+          Color dorado reservado<br/>para la quinceañera
+        </p>
+
+        <!-- Divisor decorativo -->
+        <div class="flex items-center justify-center gap-2 my-3">
+          <div class="h-px bg-[#c9a94b] flex-1 opacity-60"></div>
+          <span class="text-[#c9a94b] text-xs">✦</span>
+          <div class="h-px bg-[#c9a94b] flex-1 opacity-60"></div>
+        </div>
+
+        <p class="font-charm text-lg md:text-xl text-[#9A7B2F] leading-relaxed">
+          También el color rosado<br/>reservado para la hermana<br/>de la quinceañera
+        </p>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .nota-elegante {
+    border: 1px solid #c9a94b;
+    box-shadow: inset 0 0 0 3px rgba(201, 169, 75, 0.12), 0 2px 12px rgba(162, 119, 53, 0.15);
+    background: linear-gradient(135deg, rgba(201,169,75,0.04) 0%, rgba(255,255,255,0) 50%, rgba(201,169,75,0.04) 100%);
+  }
+  .corner {
+    position: absolute;
+    font-size: 0.55rem;
+    color: #c9a94b;
+    line-height: 1;
+  }
+  .corner-tl { top: -0.45rem; left: -0.45rem; }
+  .corner-tr { top: -0.45rem; right: -0.45rem; }
+  .corner-bl { bottom: -0.45rem; left: -0.45rem; }
+  .corner-br { bottom: -0.45rem; right: -0.45rem; }
+</style>
 
 <script>
   import { gsap } from "gsap";

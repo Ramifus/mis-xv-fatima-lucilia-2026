@@ -1,0 +1,201 @@
+---
+// Pase.astro
+interface Props {
+    numeroPases: number;
+    nombreInvitado?: string;
+}
+
+const { numeroPases = 1, nombreInvitado = "" } = Astro.props;
+---
+
+<section class="py-8 relative overflow-hidden">
+    <div class="relative">
+        <!-- FLORES LATERALES (igual que Contador) -->
+        <div
+            class="absolute left-0 top-1/2 -translate-y-1/2 w-16 md:w-20 lg:w-24 pointer-events-none z-0"
+            id="flores-pase-izq"
+        >
+            <img
+                src="/imagenes/FlorLateral.webp"
+                alt=""
+                class="w-full h-auto object-contain"
+            />
+        </div>
+        <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-16 md:w-20 lg:w-24 pointer-events-none z-0"
+            id="flores-pase-der"
+        >
+            <img
+                src="/imagenes/FlorLateral.webp"
+                alt=""
+                class="w-full h-auto object-contain scale-x-[-1]"
+            />
+        </div>
+
+        <div class="max-w-xl mx-auto px-4 relative">
+            <!-- SEPARADOR SUPERIOR -->
+            <div class="flex justify-center mb-4">
+                <img src="/imagenes/FlorSeparador.webp" alt="" class="w-40 md:w-56 lg:w-64 h-auto object-contain" />
+            </div>
+
+            <!-- CARD (mismo estilo que Calendario) -->
+            <div
+                class="relative z-10 rounded-3xl p-6 md:p-8"
+                id="card-pase"
+                style="background: linear-gradient(145deg, #fffdf7 0%, #fff9ee 60%, #fffdf7 100%); border: 1.5px solid rgba(162,119,53,0.35); box-shadow: 0 8px 32px rgba(162,119,53,0.12), inset 0 1px 0 rgba(255,255,255,0.9);"
+            >
+                <!-- Esquinas decorativas -->
+                <div
+                    class="absolute top-2 left-2 w-5 h-5 border-t-2 border-l-2 border-[#a27735]/40 rounded-tl-lg pointer-events-none"
+                >
+                </div>
+                <div
+                    class="absolute top-2 right-2 w-5 h-5 border-t-2 border-r-2 border-[#a27735]/40 rounded-tr-lg pointer-events-none"
+                >
+                </div>
+                <div
+                    class="absolute bottom-2 left-2 w-5 h-5 border-b-2 border-l-2 border-[#a27735]/40 rounded-bl-lg pointer-events-none"
+                >
+                </div>
+                <div
+                    class="absolute bottom-2 right-2 w-5 h-5 border-b-2 border-r-2 border-[#a27735]/40 rounded-br-lg pointer-events-none"
+                >
+                </div>
+
+                <!-- Contenido centrado -->
+                <div class="text-center" id="contenido-pase">
+                    <!-- Icono pase -->
+                    <div class="flex justify-center mb-3">
+                        <img
+                            src="/imagenes/pase.png"
+                            alt="Pase"
+                            class="w-16 h-16 object-contain icono-pase"
+                        />
+                    </div>
+
+                    <!-- Etiqueta -->
+                    <p class="font-charm text-xl text-[#a27735] uppercase mb-1">
+                        Pase de invitación
+                    </p>
+
+                    <!-- Número grande -->
+                    <p
+                        class="font-charm font-bold leading-none mb-1"
+                        style="font-size: 5rem; background: linear-gradient(135deg, #a27735 0%, #d4af37 50%, #a27735 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"
+                    >
+                        {numeroPases}
+                    </p>
+
+                    <!-- Persona / Personas -->
+                    <p
+                        class="font-charm text-lg tracking-[0.22em] text-[#a27735] uppercase -mt-1 mb-5"
+                    >
+                        {numeroPases === 1 ? "Invitado" : "Invitados"}
+                    </p>
+
+                    <!-- Separador tipo ticket -->
+                    <div
+                        class="relative flex items-center justify-center mb-5"
+                        style="margin-left:-1.5rem; margin-right:-1.5rem;"
+                    >
+                        <div
+                            class="absolute -left-3 w-5 h-5 rounded-full bg-[#f7f1e4]"
+                            style="border-right: 1.5px solid rgba(162,119,53,0.3);"
+                        >
+                        </div>
+                        <div
+                            class="flex-1 border-t border-dashed border-[#a27735]/30"
+                        >
+                        </div>
+                        <span class="mx-2 text-[#c9a94b] text-xs flex-shrink-0"
+                            >✦</span
+                        >
+                        <div
+                            class="flex-1 border-t border-dashed border-[#a27735]/30"
+                        >
+                        </div>
+                        <div
+                            class="absolute -right-3 w-5 h-5 rounded-full bg-[#f7f1e4]"
+                            style="border-left: 1.5px solid rgba(162,119,53,0.3);"
+                        >
+                        </div>
+                    </div>
+
+                    <!-- Nombre del invitado -->
+                    {
+                        nombreInvitado && (
+                            <p class="font-great-vibes text-3xl text-[#9A7B2F] mb-5 leading-snug">
+                                {nombreInvitado}
+                            </p>
+                        )
+                    }
+
+                    <!-- Nota aclaratoria -->
+                    <p
+                        class="font-charm text-xl md:text-lg text-[#9A7B2F]/80 leading-relaxed"
+                    >
+                        El ingreso es únicamente para personas registradas en la
+                        lista de invitados.
+                        <br />
+                        Por favor, confirma tu asistencia
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .icono-pase {
+        filter: brightness(0) saturate(100%) invert(56%) sepia(12%)
+            saturate(1486%) hue-rotate(359deg) brightness(92%) contrast(87%);
+    }
+    #card-pase {
+        transition:
+            box-shadow 0.3s ease,
+            transform 0.3s ease;
+    }
+    #card-pase:hover {
+        box-shadow:
+            0 16px 48px rgba(162, 119, 53, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+        transform: translateY(-3px);
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.set("#flores-pase-izq", { opacity: 0, x: 60 });
+        gsap.set("#flores-pase-der", { opacity: 0, x: -60 });
+        gsap.set("#card-pase", { opacity: 0, scale: 0.95 });
+
+        ScrollTrigger.create({
+            trigger: "#card-pase",
+            start: "top 85%",
+            end: "top 20%",
+            onEnter: () => {
+                const tl = gsap.timeline();
+                tl.to("#card-pase", {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.6,
+                    ease: "power2.out",
+                }).to(
+                    "#flores-pase-izq, #flores-pase-der",
+                    { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" },
+                    "-=0.2",
+                );
+            },
+            onLeaveBack: () => {
+                gsap.set("#flores-pase-izq", { opacity: 0, x: 60 });
+                gsap.set("#flores-pase-der", { opacity: 0, x: -60 });
+                gsap.set("#card-pase", { opacity: 0, scale: 0.95 });
+            },
+        });
+    });
+</script>

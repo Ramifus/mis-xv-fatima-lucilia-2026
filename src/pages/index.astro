@@ -18,6 +18,7 @@ import Despedida from "../components/Despedida.astro";
 import FloresAbajo from "../components/FloresAbajo.astro";
 import DireccionIglesia from "../components/DireccionIglesia.astro";
 import Restriccion from "../components/Restriccion.astro";
+import Pase from "../components/Pase.astro";
 ---
 
 <Layout title="Mis XV Años">
@@ -32,9 +33,11 @@ import Restriccion from "../components/Restriccion.astro";
     <Direccion />
     <!-- <Itinerario /> -->
     <CodigoVestimenta />
+
     <!-- <Restriccion /> -->
-    <!-- <Regalos /> -->
+    <Regalos />
     <GaleriaFotos />
+    <Pase numeroPases={1} />
     <Despedida />
     <FloresAbajo />
 </Layout>
